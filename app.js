@@ -40,7 +40,6 @@ app.enable('trust proxy');
 // 静态资源
 app.use('/stylesheets', expressLess(__dirname + '/public/stylesheets', { compress: true }));
 app.use('/public', express.static(staticDir));
-app.use('/fonts', express.static(__dirname + '/public/fonts'));
 
 app.use(helmet.frameguard('sameorigin'));
 app.use(require('response-time')());
