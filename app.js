@@ -91,7 +91,7 @@ app.use('/', function (req, res, next) {
 });
 
 // routes
-app.use('/interface', cors(), apiRouter);
+app.use('/api', cors(), apiRouter);
 app.use('/', webRouter);
 
 // error handler
