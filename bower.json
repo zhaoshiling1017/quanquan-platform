@@ -1,0 +1,13 @@
+{
+  "name": "quanquan-platform",
+  "version": "0.0.1",
+  "authors": [
+    "lenzhao <lenzhao@yahoo.com>"
+  ],
+  "description": "A Node.js Project About Social Software",
+  "keywords": [
+    "quanquan"
+  ],
+  "license": "MIT",
+  "private": true
+}
