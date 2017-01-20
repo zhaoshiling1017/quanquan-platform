@@ -22,7 +22,7 @@
     "app-root-path": "^1.0.0",
     "bcrypt": "^0.8.5",
     "bluebird": "^2.10.2",
-    "body-parser": "^1.13.3",
+    "body-parser": "^1.16.0",
     "compression": "^1.5.2",
     "connect-busboy": "0.0.2",
     "connect-flash": "^0.1.1",

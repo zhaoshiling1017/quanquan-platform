@@ -4,7 +4,6 @@ var express = require('express');
 var session = require('express-session');
 var apiRouter = require('./api_router');
 var webRouter = require('./web_router');
-var auth = require('./middlewares/auth');
 var RedisStore = require('connect-redis')(session);
 var _ = require('lodash');
 var compress = require('compression');
@@ -85,10 +84,6 @@ _.extend(app.locals, require('./common/render_helper'));
 if (!_.isEmpty(dict)) {
   _.extend(app.locals, {dict: dict});
 }
-
-app.use('/', function (req, res, next) {
-  next();
-});
 
 // routes
 app.use('/api', cors(), apiRouter);

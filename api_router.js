@@ -1,8 +1,10 @@
-var express           = require('express');
-var userController    = require('./api/user');
-var middleware        = require('./api/middleware');
-var config            = require('./config');
+var express = require('express');
+var User = require('./api/user');
+var config = require('./config');
 
-var router            = express.Router();
+var router = express.Router();
+
+//用户
+router.post('/login', User.login);
 
 module.exports = router;
