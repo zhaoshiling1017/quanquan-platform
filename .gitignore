@@ -3,7 +3,6 @@ node_modules
 
 *.min.*.js
 *.min.*.css
-assets.json
 
 # Ignore Mac OS desktop services store
 .DS_Store
@@ -20,3 +19,4 @@ dump.rdb
 
 logs/*
 !logs/.keep
+.vscode

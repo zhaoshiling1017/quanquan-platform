@@ -7,6 +7,8 @@ moment.locale('zh-cn'); // 使用中文
 var logger = require('./logger').logger('tools');
 var Promise = require('bluebird');
 Promise.promisifyAll(bcrypt);
+var crypto = require('crypto');
+var uuid = require('uuid');
 
 // 格式化时间
 var formatDate = function (date, friendly) {
@@ -133,3 +135,48 @@ var trimObject = function (obj) {
 }
 
 exports.trimObject = trimObject;
+
+var encrypt = function (key, data, iv) {
+  var cipher = crypto.createCipheriv('aes-128-cbc', key, iv);
+  var crypted = cipher.update(data, 'utf8', 'binary');
+  crypted += cipher.final('binary');
+  crypted = new Buffer(crypted, 'binary').toString('base64');
+  return crypted;
+};
+
+exports.encrypt = encrypt;
+
+var decrypt = function (key, crypted, iv) {
+  crypted = new Buffer(crypted, 'base64').toString('binary');
+  var decipher = crypto.createDecipheriv('aes-128-cbc', key, iv);
+  var decoded = decipher.update(crypted, 'binary', 'utf8');
+  decoded += decipher.final('utf8');
+  return decoded;
+};
+
+exports.decrypt = decrypt;
+
+var genOauthNonce = function() {
+  var oauth_nonce = uuid().replace(/-/g, '');
+  return oauth_nonce;
+}
+
+exports.genOauthNonce = genOauthNonce;
+
+var genTimestamp = function() {
+  return parseInt(moment().valueOf()/1000) + '';
+}
+
+exports.genTimestamp = genTimestamp;
+
+var generateRand = function(n) {
+  var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  var res = "";
+  for(var i = 0; i < n ; i ++) {
+      var id = Math.ceil(Math.random()*35);
+      res += chars[id];
+  }
+  return res;
+}
+
+exports.generateRand = generateRand;

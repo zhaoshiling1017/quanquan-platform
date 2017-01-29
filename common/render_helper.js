@@ -5,7 +5,6 @@
 
 var _ = require('lodash');
 var config = require('../config');
-var uuid = require('uuid');
 
 exports.staticFile = function (filePath) {
   if (filePath.indexOf('http') === 0 || filePath.indexOf('//') === 0) {

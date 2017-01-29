@@ -41,7 +41,7 @@ Promise.all(promises).then(function(){
 
 function f4(){
   var data = "1000";
-  return Promise.delay("hello",100).then(function(rs){
+  return Promise.delay("aa",100).then(function(rs){
     console.log('===rs===',rs);
     return data;
   })

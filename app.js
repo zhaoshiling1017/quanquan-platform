@@ -45,7 +45,7 @@ app.use(require('response-time')());
 
 // configure upload middleware
 
-app.use(bodyParser.json());
+app.use(bodyParser.join());
 
 app.use(bodyParser.urlencoded({
   extended: true    //use qs library
@@ -86,7 +86,7 @@ if (!_.isEmpty(dict)) {
 }
 
 // routes
-app.use('/api', cors(), apiRouter);
+app.use('/API', cors(), apiRouter);
 app.use('/', webRouter);
 
 // error handler

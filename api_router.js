@@ -5,6 +5,6 @@ var config = require('./config');
 var router = express.Router();
 
 //用户
-router.post('/login', User.login);
+router.post('/user', User.regist);
 
 module.exports = router;
