@@ -14,7 +14,7 @@ var get = function (key) {
   return redis.get(_key).then(function(data) {
       if (!data) {
         return null;
-      } 
+      }
       return JSON.parse(data);
   });
 };
@@ -28,6 +28,14 @@ var set = function (key, value) {
 };
 
 exports.set = set;
+
+var setex = function(key, l, value) {
+  var _key = prefix(key);
+  return redis.setex(_key, l, value);
+}
+
+exports.setex = setex;
+
 
 //删除cache
 var del = function (key) {

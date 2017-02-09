@@ -180,3 +180,13 @@ var generateRand = function(n) {
 }
 
 exports.generateRand = generateRand;
+
+var generateVerifyCode = function() {
+  var num = "";
+  for (var i=0; i<4; i++) {
+    num += Math.floor(Math.random()*10);
+  }
+  return num;
+}
+
+exports.generateVerifyCode = generateVerifyCode;

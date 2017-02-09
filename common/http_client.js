@@ -1,6 +1,8 @@
 var http = require('http');
 var url = require('url');
 var _ = require('lodash');
+var querystring = require('querystring');
+
 var  logger = require('../common/logger').logger('http_client');
 
 var HttpClient = function(urlStr) {
@@ -8,7 +10,7 @@ var HttpClient = function(urlStr) {
 }
 
 HttpClient.prototype.get = function(callback) {
-  var parsedUrl = url.parse(this.urlStr, true); 
+  var parsedUrl = url.parse(this.urlStr, true);
   var options = {host: null, port: -1, path: null, method: 'GET'};
   options.host = parsedUrl.hostname;
   options.port = parsedUrl.port;
@@ -33,21 +35,22 @@ HttpClient.prototype.get = function(callback) {
   req.end();
 }
 
-HttpClient.prototype.post = function(content, callback) {
+HttpClient.prototype.post = function(params, callback) {
+  var content = querystring.stringify(params);
   var parsedUrl = url.parse(this.urlStr, true);
   var options = {
     host: parsedUrl.hostname,
     path: parsedUrl.pathname,
     method: 'POST',
+    port: parsedUrl.port,
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': content.length
     }
   };
   var req = http.request(options, function(res) {
     res.setEncoding('utf8');
     res.on('data', function(data){
-      logger.info("[%s]: body<%s>", "httpClient::post", data);
       callback(null, data);
     });
     res.on('error', function(err) {

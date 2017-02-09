@@ -33,7 +33,7 @@ exports.getUserById = function(id) {
 }
 
 exports.getUserByPhone = function(phone) {
-  return User.findOne({ where: {phone: phone}});
+  return User.findOne({ where: {user_name: phone}});
 }
 
 exports.getAllUsers = function() {

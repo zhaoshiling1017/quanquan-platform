@@ -1,3 +1,4 @@
+require('colors');
 var config = require('./config');
 var path = require('path');
 var express = require('express');
@@ -43,14 +44,14 @@ app.use('/public', express.static(staticDir));
 app.use(helmet.frameguard('sameorigin'));
 app.use(require('response-time')());
 
-// configure upload middleware
-
-app.use(bodyParser.join());
+// parse application/json
+app.use(bodyParser.json({limit: '1mb'}));
 
 app.use(bodyParser.urlencoded({
-  extended: true    //use qs library
+  extended: true,
+  limit: '1mb'
 }));
-app.use(require('method-override')('_method'));
+app.use(require('method-override')());
 app.use(require('cookie-parser')(config.session_secret));
 app.use(compress());
 app.use(session({
